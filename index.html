@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <body id="body">
+    
+    <div class="main-layout">
+        
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="logo-section">
+                <span class="logo-text">FlowPoint</span>
+            </div>
+            <div class="user-profile">
+                <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=AL" alt="Foto de Perfil" class="profile-pic">
+                <div class="user-info">
+                    <span class="user-name">Olá, Ana Lima</span>
+                    <span class="user-status">Desenvolvedora</span>
+                </div>
+                <button class="settings-btn" aria-label="Configurações">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <!-- ITEM ATIVO (DASHBOARD) -->
+                    <li class="nav-item active"><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <!-- LINKS DE NAVEGAÇÃO -->
+                    <li class="nav-item"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li>
+                    <li class="nav-item"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
+                    <li class="nav-item"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+                    <li class="nav-item"><a href="configuracoes.html"><i class="fas fa-cog"></i> Configurações</a></li>
+                    <!-- LINK DE SAÍDA MODIFICADO PARA CHAMAR A FUNÇÃO JAVASCRIPT -->
+                    <li class="nav-item logout">
+                        <a href="#" id="logoutLink">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- CONTEÚDO PRINCIPAL: DASHBOARD -->
+        <div class="main-content">
+            <h1>Dashboard</h1>
+
+            <!-- CARDS DE ACESSO RÁPIDO (VERDE, AZUL, LARANJA) -->
+            <div class="dashboard-cards">
+                
+                <!-- Cartão Verde (Bater Ponto) -->
+                <a href="ponto.html" class="card-link">
+                    <div class="card green">
+                        <i class="fas fa-clock card-icon"></i>
+                        <p class="card-title">Bater Ponto</p>
+                    </div>
+                </a>
+
+                <!-- Cartão Azul (Meu Ponto) -->
+                 <a href="meuponto.html" class="card-link">
+                    <div class="card blue">
+                        <i class="fas fa-file-alt card-icon"></i>
+                        <p class="card-title">Meu Ponto</p>
+                    </div>
+                </a>
+
+                <!-- Cartão Laranja (Relatórios) -->
+                <a href="relatorio.html" class="card-link">
+                    <div class="card orange">
+                        <i class="fas fa-chart-bar card-icon"></i>
+                        <p class="card-title">Relatórios</p>
+                    </div>
+                </a>
+
+            </div>
+        <link rel="stylesheet" href="script.js">
+</body>
+</html>

@@ -1,0 +1,513 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Garante que a página ocupe toda a altura da tela */
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Define uma largura máxima para o formulário */
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #27354f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    background-color: #27354f;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.forgot-password a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade (opcional, mas recomendado) */
+@media (max-width: 500px) {
+    .login-container {
+        margin: 20px;
+        padding: 20px;
+    }
+}
+
+:root {
+    --sidebar-width: 250px;
+    --primary-color: #315277; /* Azul escuro do fundo do menu */
+    --hover-color: #1a5bb0; /* Azul escuro para hover de botões */
+    --active-color: #2b70d4; /* Azul mais claro do item ativo */
+    --text-color: #ddeeff; /* Cor do texto claro (sidebar) */
+    --text-color-dark: #666; /* Cor do texto cinza escuro */
+    --border-color: rgba(255, 255, 255, 0.1);
+    --bg-light: #f4f4f4; /* Fundo da página */
+    --bg-card: #fff; /* Fundo dos cards/modais */
+    --text-primary: #333; /* Cor principal do texto */
+    
+    /* Cores de status */
+    --green-success: #28a745;
+    --red-danger: #dc3545;
+    --yellow-warning: #ffc107;
+    --blue-info: #17a2b8;
+    --orange-card: #f7924d;
+    --blue-card: #4a8ff5;
+    --green-card: #38b46a;
+}
+
+/* Estilos para Modo Escuro (Aplicado na classe body.dark-mode) */
+body.dark-mode {
+    --primary-color: #1e1e2d;
+    --hover-color: #2b2b40;
+    --active-color: #5d5d81;
+    --text-color: #c7c7d7;
+    --bg-light: #12121e;
+    --bg-card: #1f1f32;
+    --text-primary: #f0f0f0;
+    --text-color-dark: #b0b0b0;
+}
+
+/* ---------------------------------- */
+/* 1. RESET E LAYOUT PRINCIPAL */
+/* ---------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+    color: var(--text-primary);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.main-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 30px 50px;
+}
+
+.main-content h1 {
+    font-size: 2em;
+    color: var(--text-primary);
+    margin-bottom: 25px;
+    font-weight: normal;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* ---------------------------------- */
+/* 2. SIDEBAR (BARRA LATERAL) */
+/* ---------------------------------- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    height: 100vh;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s;
+}
+
+.logo-section { padding: 0 20px 20px 20px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px; }
+.logo-text { font-size: 1.5em; font-weight: bold; }
+
+/* Perfil */
+.user-profile { display: flex; align-items: center; padding: 10px 20px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+.profile-pic { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px; border: 2px solid var(--active-color); }
+.user-info { display: flex; flex-direction: column; flex-grow: 1; overflow: hidden; }
+.user-name { font-size: 0.9em; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.user-status { font-size: 0.7em; color: #99bbff; }
+.settings-btn { background: none; border: none; color: var(--text-color); font-size: 1.1em; cursor: pointer; margin-left: 10px; padding: 5px; transition: color 0.2s; }
+.settings-btn:hover { color: #fff; }
+
+/* Navegação */
+.nav-menu ul { list-style: none; padding: 0; }
+.nav-item { margin-bottom: 5px; }
+.nav-item a { display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: var(--text-color); font-size: 1em; transition: background-color 0.2s, color 0.2s; }
+.nav-item a i { margin-right: 10px; width: 20px; text-align: center; }
+.nav-item a:hover { background-color: var(--hover-color); color: #fff; }
+
+/* Classes Ativas por Página */
+.nav-item.active a,
+.nav-item.active-point a,
+.nav-item.active-mypoint a,
+.nav-item.active-report a,
+.nav-item.active-settings a { 
+    background-color: var(--active-color);
+    color: #fff;
+    border-left: 5px solid white;
+    padding-left: 15px;
+}
+
+.nav-item.logout { margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 10px; }
+.nav-item.logout a { color: #ff9999; }
+.nav-item.logout a:hover { background-color: var(--hover-color); color: #fff; }
+
+
+/* ---------------------------------- */
+/* 3. DASHBOARD CARDS (INDEX.HTML) */
+/* ---------------------------------- */
+.dashboard-cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    flex-grow: 1;
+    display: flex; /* Garante que o link ocupe todo o espaço */
+}
+
+.card {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+    padding: 20px;
+    width: 100%; /* Ocupa a largura total do card-link */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.card.green { background-color: var(--green-card); }
+.card.blue { background-color: var(--blue-card); }
+.card.orange { background-color: var(--orange-card); }
+
+
+/* ---------------------------------- */
+/* 4. BATER PONTO (BATER-PONTO.HTML) */
+/* ---------------------------------- */
+.punch-card {
+    background-color: var(--bg-card);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    margin-top: 40px;
+}
+
+.time-display {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.date-display {
+    font-size: 1em;
+    color: var(--text-color-dark);
+    margin-bottom: 25px;
+}
+
+#punchButton {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: var(--green-card);
+    color: white;
+    border: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#punchButton:hover { background-color: #2b9157; transform: scale(1.05); }
+#punchButton:active { transform: scale(0.95); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
+
+.status-box {
+    margin-top: 30px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f0f8ff;
+    border: 1px solid #cceeff;
+    font-weight: bold;
+}
+
+.last-punch {
+    font-size: 0.9em;
+    color: var(--text-color-dark);
+    margin-top: 15px;
+}
+.status-work { border-left: 5px solid var(--green-card); color: var(--green-card); }
+.status-break { border-left: 5px solid var(--orange-card); color: var(--orange-card); }
+
+/* ---------------------------------- */
+/* 5. MEU PONTO / RELATÓRIOS (TABELAS) */
+/* ---------------------------------- */
+
+/* Cards de Saldo (Meu Ponto) */
+.balance-cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.balance-card {
+    flex-grow: 1;
+    flex-basis: 200px;
+    background-color: var(--bg-card);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.balance-card .title { font-size: 0.9em; color: #777; margin-bottom: 5px; }
+.balance-card .value { font-size: 1.8em; font-weight: bold; }
+
+.positive .value { color: var(--green-success); }
+.negative .value { color: var(--red-danger); }
+.neutral .value { color: var(--blue-info); }
+
+/* Tabela e Filtros */
+.mirror-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.filter-period { padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+.adjust-btn { background-color: var(--active-color); color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.2s; font-weight: bold; }
+.adjust-btn:hover { background-color: #1a5bb0; }
+
+.point-records-section { margin-top: 30px; }
+.point-records-section h2 { color: var(--text-primary); margin-bottom: 15px; font-size: 1.5em; font-weight: 500; }
+
+.point-table { width: 100%; border-collapse: collapse; background-color: var(--bg-card); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); }
+.point-table th, .point-table td { padding: 12px 15px; text-align: center; border-bottom: 1px solid #eee; font-size: 0.9em; }
+.point-table thead th { background-color: #f8f9fa; color: #555; font-weight: bold; text-transform: uppercase; }
+
+.status-cell { font-weight: bold; }
+.present-status { color: var(--green-success); }
+.falta-status { color: var(--red-danger); background-color: #fff0f0; }
+
+/* Informações do Colaborador (Relatórios) */
+.employee-info-card {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    border-left: 5px solid var(--orange-card);
+}
+
+.info-group { display: flex; flex-direction: column; }
+.info-label { font-size: 0.9em; color: var(--text-color-dark); margin-bottom: 3px; }
+.info-value { font-size: 1.2em; font-weight: bold; color: var(--text-primary); }
+
+/* ---------------------------------- */
+/* 6. CONFIGURAÇÕES (CONFIGURACOES.HTML) */
+/* ---------------------------------- */
+.settings-area { display: flex; flex-direction: column; gap: 30px; max-width: 800px; }
+.settings-card { background-color: var(--bg-card); padding: 30px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); transition: background-color 0.3s; }
+.settings-card h2 { color: var(--primary-color); border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; font-size: 1.4em; }
+
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-weight: bold; color: var(--text-color-dark); margin-bottom: 5px; font-size: 0.9em; }
+.form-group input[type="text"], .form-group input[type="email"], .form-group select { 
+    width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: var(--bg-card); color: var(--text-primary); transition: background-color 0.3s, border-color 0.3s; 
+}
+
+.save-btn { background-color: var(--active-color); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background-color 0.2s; margin-top: 10px; }
+.save-btn:hover { background-color: var(--hover-color); }
+
+.toggle-switch-group { display: flex; justify-content: space-between; align-items: center; }
+.switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: 0.4s; border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: 0.4s; border-radius: 50%; }
+input:checked + .slider { background-color: var(--active-color); }
+input:checked + .slider:before { transform: translateX(26px); }
+
+
+/* ---------------------------------- */
+/* 7. MODAL GERAL (AJUSTE/LOGOUT) */
+/* ---------------------------------- */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Modal de Ajuste/Edição (usado em Meu Ponto e Relatórios) */
+.modal-content {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%; 
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: fadeIn 0.3s; 
+}
+
+/* Modal de Confirmação (Logout) */
+.modal-content-confirm {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%; 
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s;
+    text-align: center;
+}
+
+.modal-content-confirm h3 { color: var(--red-danger); margin-bottom: 15px; font-size: 1.5em; }
+.modal-content-confirm p { margin-bottom: 25px; color: var(--text-primary); }
+
+.modal-actions button { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 0 10px; transition: opacity 0.2s; }
+.modal-actions .btn-cancel { background-color: #ccc; color: #333; }
+.modal-actions .btn-confirm { background-color: var(--red-danger); color: white; }
+.modal-actions button:hover { opacity: 0.8; }
+
+.close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+.close-btn:hover, .close-btn:focus { color: #333; text-decoration: none; }
+
+
+/* Formulário de Ajuste (Dentro do Modal) */
+.modal-content h3 { color: var(--primary-color); margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; font-size: 1.4em; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-weight: 500; color: #555; margin-bottom: 5px; }
+.form-group input[type="date"], .form-group input[type="time"], .form-group textarea, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; }
+.submit-modal-btn { background-color: var(--green-success); color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; width: 100%; font-weight: bold; }
+
+
+/* ---------------------------------- */
+/* 8. MEDIA QUERIES (RESPONSIVIDADE) */
+/* ---------------------------------- */
+@media (max-width: 900px) {
+    .main-content {
+        padding: 20px;
+    }
+    .dashboard-cards {
+        flex-direction: column;
+    }
+    .balance-cards {
+        flex-direction: column;
+    }
+    .mirror-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .mirror-header select, .mirror-header button {
+        margin-top: 10px;
+    }
+    .employee-info-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    /* Rolar tabelas em telas menores */
+    .point-records-section {
+        overflow-x: auto;
+    }
+    .point-table {
+        min-width: 800px;
+    }
+}
+
+@media (max-width: 600px) {
+    .settings-area {
+        max-width: 100%;
+    }
+}

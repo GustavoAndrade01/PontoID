@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatorios</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    
+    <div class="main-layout">
+        
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="logo-section">
+                <span class="logo-text">FlowPoint</span>
+            </div>
+            <div class="user-profile">
+                <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=AL" alt="Foto de Perfil" class="profile-pic">
+                <div class="user-info">
+                    <span class="user-name">Olá, Gerente</span>
+                    <span class="user-status">Administrador</span>
+                </div>
+                <button class="settings-btn" aria-label="Configurações">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <!-- LINKS ATUALIZADOS -->
+                    <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li class="nav-item"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li>
+                    <li class="nav-item"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
+                    <!-- O item ativo aponta para a própria página (relatorio-ponto.html) -->
+                    <li class="nav-item active-report"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+                    <li class="nav-item"><a href="#"><i class="fas fa-folder-open"></i> Auditoria</a></li>
+                    <!-- Fim dos LINKS ATUALIZADOS -->
+                    <li class="nav-item logout"><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- CONTEÚDO PRINCIPAL: RELATÓRIOS -->
+        <div class="main-content">
+            <h1>Relatório de Ponto por Colaborador</h1>
+
+            <!-- Seção de Filtros e Busca -->
+            <div class="filters-section">
+                <div class="filter-group">
+                    <label for="employee-select">Selecione o Colaborador:</label>
+                    <select id="employee-select">
+                        <option value="">-- Selecione um Funcionário --</option>
+                        <option value="1">Ana Lima (Desenvolvedora)</option>
+                        <option value="2">Bruno Costa (Marketing)</option>
+                        <option value="3">Carla Nunes (Financeiro)</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <button class="search-btn" onclick="fetchEmployeeData()">
+                        <i class="fas fa-search"></i> Buscar Ponto
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detalhes do Funcionário (Inicialmente oculto) -->
+            <div id="employeeDetails">
+                <div class="employee-info-card">
+                    <div class="info-group">
+                        <span class="info-label">Colaborador:</span>
+                        <span class="info-value" id="employeeName">Nome do Colaborador</span>
+                    </div>
+                    <div class="info-group">
+                        <span class="info-label">Função:</span>
+                        <span class="info-value" id="employeeRole">Função</span>
+                    </div>
+                </div>
+                
+                <!-- Tabela de Registros de Ponto -->
+                <div class="point-records-section">
+                    <h2>Registros de Ponto da Semana</h2>
+                    
+                    <table class="point-table">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Dia</th>
+                                <th>E. Prevista</th>
+                                <th>S. Prevista</th>
+                                <th>E. Real 1</th>
+                                <th>S. Real 1</th>
+                                <th>E. Real 2</th>
+                                <th>S. Real 2</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pointTableBody">
+                            <!-- Os dados serão inseridos aqui pelo JavaScript -->
+                            <tr><td colspan="9">Selecione um funcionário e clique em Buscar.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
