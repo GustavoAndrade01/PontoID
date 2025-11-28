@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.confirmLogout = function() {
         console.log("Usuário confirmou a saída. Redirecionando para a tela de login...");
         // Em um sistema real, aqui você chamaria a API de logout
-        window.location.href = "index.html"; 
+        window.location.href = "login.html"; 
     }
 
     // Fechar o modal ao clicar fora dele
@@ -336,3 +336,4 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`Modal de Alteração aberto para o registro #${rowIndex + 1} (Esta função está aqui para simular a edição do registro na tela de relatórios).`);
         }
     }
+});
