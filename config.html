@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - FlowPoint</title>
+    <!-- Font Awesome para os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- VÍNCULO AO ARQUIVO CSS UNIFICADO -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="body">
+    
+    <!-- INÍCIO DA ESTRUTURA FLEXBOX -->
+    <div class="main-layout">
+        
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="logo-section">
+                <span class="logo-text">FlowPoint</span>
+            </div>
+            <div class="user-profile">
+                <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=AL" alt="Foto de Perfil" class="profile-pic">
+                <div class="user-info">
+                    <span class="user-name">Olá, Ana Lima</span>
+                    <span class="user-status">Desenvolvedora</span>
+                </div>
+                <a href="config.html" class="settings-btn" aria-label="Configurações">
+                    <i class="fas fa-cog"></i>
+                </a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <!-- LINKS DE NAVEGAÇÃO -->
+                    <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li class="nav-item"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li>
+                    <li class="nav-item"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
+                    <li class="nav-item"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+                    <!-- ITEM ATIVO DA PÁGINA -->
+                    <li class="nav-item active-settings"><a href="config.html"><i class="fas fa-cog"></i> Configurações</a></li>
+                    <!-- LINK DE SAÍDA MODIFICADO PARA CHAMAR A FUNÇÃO JAVASCRIPT -->
+                    <li class="nav-item logout">
+                        <a href="#" id="logoutLink">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- CONTEÚDO PRINCIPAL: CONFIGURAÇÕES -->
+        <div class="main-content">
+            <h1>Configurações do Usuário</h1>
+
+            <div class="settings-area">
+
+                <!-- 1. Configurações de Perfil -->
+                <div class="settings-card">
+                    <h2><i class="fas fa-user-circle"></i> Meu Perfil</h2>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="fullName">Nome Completo</label>
+                            <input type="text" id="fullName" value="Ana Lima" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userEmail">E-mail</label>
+                            <input type="email" id="userEmail" value="ana.lima@flowpoint.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userRole">Função</label>
+                            <input type="text" id="userRole" value="Desenvolvedora Web Júnior" disabled>
+                        </div>
+                        <button type="submit" class="save-btn">Salvar Perfil</button>
+                    </form>
+                </div>
+
+                <!-- 2. Configurações de Aparência -->
+                <div class="settings-card">
+                    <h2><i class="fas fa-palette"></i> Aparência</h2>
+                    
+                    <div class="toggle-switch-group">
+                        <label>Modo Escuro (Dark Mode)</label>
+                        <label class="switch">
+                            <input type="checkbox" id="darkModeToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="languageSelect">Idioma</label>
+                        <select id="languageSelect">
+                            <option value="pt-br">Português (Brasil)</option>
+                            <option value="en-us">English (US)</option>
+                        </select>
+                    </div>
+                    <button class="save-btn" onclick="saveAppearanceSettings()">Salvar Aparência</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MODAL DE CONFIRMAÇÃO DE SAÍDA (Necessário para a lógica de logout) -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content-confirm">
+            <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Saída</h3>
+            <p>Tem certeza de que deseja sair do sistema FlowPoint?</p>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeLogoutModal()">Cancelar</button>
+                <button class="btn-confirm" onclick="confirmLogout()">Sair</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- VÍNCULO AO ARQUIVO JAVASCRIPT UNIFICADO -->
+    <script src="script.js"></script>
+</body>
+</html>

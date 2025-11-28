@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bater Ponto</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <div class="main-layout">
+
+         <!-- 1. SIDEBAR (CORRIGIDA) -->
+         <div class="sidebar">
+           <div class="logo-section">
+           <span class="logo-text">Ponto ID</span>
+         </div>
+
+             <div class="user-profile">
+                <!-- Foto fictícia -->
+                <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=AL" alt="Foto de Perfil" class="profile-pic">
+                 <div class="user-info">
+                    <span class="user-name">Olá, Ana Lima</span>
+                    <span class="user-status">Desenvolvedora</span>
+                </div>
+                <a href="config.html" class="settings-btn" aria-label="Configurações">
+                    <i class="fas fa-cog"></i>
+                </a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                   <!-- LINKS DE NAVEGAÇÃO -->
+                    <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li class="nav-item active-point"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li>
+                     <li class="nav-item"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
+                     <li class="nav-item"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+                    <li class="nav-item"><a href="config.html"><i class="fas fa-cog"></i> Configurações</a></li>
+                   <!-- Fim dos LINKS -->
+                     <li class="nav-item logout"><a href="#" id="logoutLink"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                </ul>
+             </nav>
+         </div> <!-- FIM CORRETO DA SIDEBAR -->
+        
+        <!-- CONTEÚDO PRINCIPAL: BATER PONTO -->
+        <div class="main-content">
+            <h1>Registro de Marcação</h1>
+
+            <div class="punch-card">
+                
+                <!-- Exibição do Tempo e Data -->
+                <div class="time-container">
+                    <div id="currentTime" class="time-display">10:20:00</div>
+                    <div id="currentDate" class="date-display">Terça-feira, 30 de Julho de 2025</div>
+                </div>
+
+                <!-- Botão de Marcação -->
+                <button id="punchButton" onclick="handlePunch()">
+                    MARCAR PONTO
+                </button>
+                
+                <!-- Exibição do Status Atual -->
+                <div id="statusBox" class="status-box">
+                    Status Atual: <span id="currentStatus">Fora do Expediente</span>
+                </div>
+
+                <!-- Exibição da Última Marcação -->
+                <div class="last-punch">
+                    Última Marcação: <span id="lastPunchTime">--</span>
+                </div>
+                
+                <!-- Dados Adicionais Coletados/Exibidos -->
+                <div class="hidden-info">
+                    Matrícula: <span id="matricula">FP12345</span> | 
+                    Dia do Sistema: <span id="systemDate"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
