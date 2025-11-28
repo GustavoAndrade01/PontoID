@@ -336,4 +336,3 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`Modal de Alteração aberto para o registro #${rowIndex + 1} (Esta função está aqui para simular a edição do registro na tela de relatórios).`);
         }
     }
-});
