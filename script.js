@@ -3,38 +3,38 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Variáveis Globais Comuns ---
     const body = document.getElementById('body');
-    const logoutModal = document.getElementById('logoutModal');
-    const logoutLink = document.getElementById('logoutLink');
+    const ModalSaida = document.getElementById('ModalSaida');
+    const LinkSaida = document.getElementById('LinkSaida');
     const STORAGE_KEY_THEME = 'flowpoint_theme';
 
     // ----------------------------------------------------
     // Lógica de Confirmação de Saída (Comum a todas as páginas)
     // ----------------------------------------------------
-    if (logoutLink) {
+    if (LinkSaida) {
         // Abre o modal de confirmação
-        logoutLink.addEventListener('click', (e) => {
+        LinkSaida.addEventListener('click', (e) => {
             e.preventDefault();
-            if (logoutModal) {
-                logoutModal.style.display = 'flex';
-                logoutModal.style.alignItems = 'center';
-                logoutModal.style.justifyContent = 'center';
+            if (ModalSaida) {
+                ModalSaida.style.display = 'flex';
+                ModalSaida.style.alignItems = 'center';
+                ModalSaida.style.justifyContent = 'center';
             } else {
                 // Caso o modal não exista na página atual (para debug)
                 console.error("Modal de logout não encontrado.");
-                confirmLogout(); 
+                confirmarSaida(); 
             }
         });
     }
 
     // Fechar o modal
-    window.closeLogoutModal = function() {
-        if (logoutModal) {
-            logoutModal.style.display = 'none';
+    window.fecharModalSaida = function() {
+        if (ModalSaida) {
+            ModalSaida.style.display = 'none';
         }
     }
 
     // Confirma a saída e redireciona (Simulação)
-    window.confirmLogout = function() {
+    window.confirmarSaida = function() {
         console.log("Usuário confirmou a saída. Redirecionando para a tela de login...");
         // Em um sistema real, aqui você chamaria a API de logout
         window.location.href = "login.html"; 
@@ -42,158 +42,158 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fechar o modal ao clicar fora dele
     window.onclick = function(event) {
-        if (event.target == logoutModal) {
-            closeLogoutModal();
+        if (event.target == ModalSaida) {
+            fecharModalSaida();
         }
     }
     
     // ----------------------------------------------------
     // Lógica Específica da Página: BATER PONTO
     // ----------------------------------------------------
-    if (document.getElementById('punchButton')) {
-        const currentTimeElement = document.getElementById('currentTime');
-        const currentDateElement = document.getElementById('currentDate');
-        const systemDateElement = document.getElementById('systemDate');
-        const statusBox = document.getElementById('statusBox');
-        const currentStatusElement = document.getElementById('currentStatus');
-        const punchButton = document.getElementById('punchButton');
-        const lastPunchTimeElement = document.getElementById('lastPunchTime');
+    if (document.getElementById('botaoPonto')) {
+        const horaAtual = document.getElementById('horaAtual');
+        const dataAtual = document.getElementById('dataAtual');
+        const dataSistema = document.getElementById('dataSistema');
+        const caixaStatus = document.getElementById('caixaStatus');
+        const statusAtual = document.getElementById('statusAtual');
+        const botaoPonto = document.getElementById('botaoPonto');
+        const ultimoPonto = document.getElementById('ultimoPonto');
         
-        const STORAGE_KEY_STATUS = 'flowpoint_status';
-        const STORAGE_KEY_LAST_PUNCH = 'flowpoint_last_punch';
+        const STORAGE_KEY_STATUS = 'pontoID_status';
+        const STORAGE_KEY_LAST_PUNCH = 'pontoID_last_punch';
         
-        const PUNCH_TYPES = {
+        const TIPO_PONTO = {
             OUT: { text: "Saída", next: "IN", status: "Fora do Expediente", buttonText: "ENTRADA", statusClass: "" },
             IN: { text: "Entrada", next: "BREAK_START", status: "Em Trabalho", buttonText: "INÍCIO INTERVALO", statusClass: "status-work" },
             BREAK_START: { text: "Início Intervalo", next: "BREAK_END", status: "Em Intervalo", buttonText: "FIM INTERVALO", statusClass: "status-break" },
             BREAK_END: { text: "Fim Intervalo", next: "OUT", status: "Em Trabalho", buttonText: "SAÍDA", statusClass: "status-work" }
         };
 
-        let currentPunchState = PUNCH_TYPES.OUT; 
+        let statusPontoAtual = TIPO_PONTO.OUT; 
         
-        function updateDateTime() {
+        function atualizarDataHora() {
             const now = new Date();
             const timeString = now.toLocaleTimeString('pt-BR', { hour12: false });
-            currentTimeElement.textContent = timeString;
+            horaAtual.textContent = timeString;
             const dateString = now.toLocaleDateString('pt-BR', { 
                 weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
             });
-            currentDateElement.textContent = dateString.charAt(0).toUpperCase() + dateString.slice(1);
-            systemDateElement.textContent = now.toISOString().slice(0, 19).replace('T', ' ');
+            dataAtual.textContent = dateString.charAt(0).toUpperCase() + dateString.slice(1);
+            dataSistema.textContent = now.toISOString().slice(0, 19).replace('T', ' ');
         }
 
-        function initializePunchState() {
-            const storedStateKey = localStorage.getItem(STORAGE_KEY_STATUS);
-            const storedLastPunch = localStorage.getItem(STORAGE_KEY_LAST_PUNCH);
+        function iniciarStatusPonto() {
+            const pontoArmazenado = localStorage.getItem(STORAGE_KEY_STATUS);
+            const ultimoPontoArmazenado = localStorage.getItem(STORAGE_KEY_LAST_PUNCH);
             
-            if (storedStateKey && PUNCH_TYPES[storedStateKey]) {
-                currentPunchState = PUNCH_TYPES[storedStateKey];
+            if (pontoArmazenado && TIPO_PONTO[pontoArmazenado]) {
+                statusPontoAtual = TIPO_PONTO[pontoArmazenado];
             } else {
-                currentPunchState = PUNCH_TYPES.OUT;
+                statusPontoAtual = TIPO_PONTO.OUT;
                 localStorage.setItem(STORAGE_KEY_STATUS, 'OUT');
             }
 
-            if (storedLastPunch) {
-                lastPunchTimeElement.textContent = storedLastPunch;
+            if (ultimoPontoArmazenado) {
+                ultimoPonto.textContent = ultimoPontoArmazenado;
             }
 
-            updateUI();
+            atualizarInterface();
         }
 
-        function updateUI() {
-            const nextStateKey = currentPunchState.next;
-            const nextState = PUNCH_TYPES[nextStateKey];
+        function atualizarInterface() {
+            const statusProximaChave = statusPontoAtual.next;
+            const proximoStatus = TIPO_PONTO[statusProximaChave];
             
-            punchButton.textContent = nextState.buttonText;
-            currentStatusElement.textContent = currentPunchState.status;
-            statusBox.className = `status-atual ${currentPunchState.statusClass}`;
+            botaoPonto.textContent = proximoStatus.buttonText;
+            statusAtual.textContent = statusPontoAtual.status;
+            caixaStatus.className = `status-atual ${statusPontoAtual.statusClass}`;
         }
         
-        window.handlePunch = function() {
+        window.registrarPonto = function() {
             const now = new Date();
-            const nextStateKey = currentPunchState.next;
-            const nextState = PUNCH_TYPES[nextStateKey];
+            const statusProximaChave = statusPontoAtual.next;
+            const proximoStatus = TIPO_PONTO[statusProximaChave];
             
-            const punchType = nextState.text;
+            const tipoPonto = proximoStatus.text;
             
-            const punchData = {
+            const dadosPonto = {
                 matricula: document.getElementById('matricula').textContent,
                 data: now.toLocaleDateString('pt-BR'),
                 hora: now.toLocaleTimeString('pt-BR', { hour12: false }),
-                tipo: punchType
+                tipo: tipoPonto
             };
 
-            console.log('Registro de Ponto Enviado:', punchData);
-            alert(`Ponto registrado com sucesso: ${punchType} às ${punchData.hora}`);
+            console.log('Registro de Ponto Enviado:', dadosPonto);
+            alert(`Ponto registrado com sucesso: ${tipoPonto} às ${dadosPonto.hora}`);
             
-            currentPunchState = nextState;
-            localStorage.setItem(STORAGE_KEY_STATUS, nextStateKey);
-            localStorage.setItem(STORAGE_KEY_LAST_PUNCH, `${punchType} em ${punchData.data} às ${punchData.hora}`);
+            statusPontoAtual = proximoStatus;
+            localStorage.setItem(STORAGE_KEY_STATUS, statusProximaChave);
+            localStorage.setItem(STORAGE_KEY_LAST_PUNCH, `${tipoPonto} em ${dadosPonto.data} às ${dadosPonto.hora}`);
             
-            lastPunchTimeElement.textContent = ` ${punchType} em ${punchData.data} às ${punchData.hora}`;
-            updateUI();
+            ultimoPonto.textContent = ` ${tipoPonto} em ${dadosPonto.data} às ${dadosPonto.hora}`;
+            atualizarInterface();
         }
 
-        setInterval(updateDateTime, 1000); 
-        updateDateTime(); 
-        initializePunchState();
+        setInterval(atualizarDataHora, 1000); 
+        atualizarDataHora(); 
+        iniciarStatusPonto();
     }
     
     // ----------------------------------------------------
     // Lógica Específica da Página: MEU PONTO
     // ----------------------------------------------------
-    if (document.getElementById('mirrorTableBody')) {
-        const mirrorTableBody = document.getElementById('mirrorTableBody');
-        const adjustmentModal = document.getElementById('adjustmentModal');
-        const adjustmentForm = document.getElementById('adjustmentForm');
+    if (document.getElementById('corpoTabela')) {
+        const corpoTabela = document.getElementById('corpoTabela');
+        const modalAjuste = document.getElementById('modalAjuste');
+        const formAjuste = document.getElementById('formAjuste');
         
-        const mockRecords = [
-            { day: '01/Set', status: 'Presente', p_in: '08:00', p_out: '17:00', marks: ['08:02', '12:00', '13:00', '17:05'], total: '08:03', adjusted: false },
-            { day: '02/Set', status: 'Presente', p_in: '08:00', p_out: '17:00', marks: ['07:59', '12:05', '13:05', '17:00'], total: '08:01', adjusted: false },
-            { day: '03/Set', status: 'Falta', p_in: '08:00', p_out: '17:00', marks: ['-'], total: '00:00', adjusted: false },
-            { day: '04/Set', status: 'Presente', p_in: '08:00', p_out: '17:00', marks: ['08:00', '12:00', '13:00'], total: '07:00', adjusted: true },
-            { day: '05/Set', status: 'Atestado', p_in: '08:00', p_out: '17:00', marks: ['Atestado Médico'], total: '08:00', adjusted: true },
+        const registrosmarcados = [
+            { day: '01/Set', status: 'Presente', p_in: '08:00', p_out: '17:00', horasmarcadas: ['08:02', '12:00', '13:00', '17:05'], total: '08:03', ajuste: false },
+            { day: '02/Set', status: 'Presente', p_in: '08:00', p_out: '17:00', horasmarcadas: ['07:59', '12:05', '13:05', '17:00'], total: '08:01', ajuste: false },
+            { day: '03/Set', status: 'Falta', p_in: '08:00', p_out: '17:00', horasmarcadas: ['-'], total: '00:00', ajuste: false },
+            { day: '04/Set', status: 'Presente', p_in: '08:00', p_out: '17:00', horasmarcadas: ['08:00', '12:00', '13:00'], total: '07:00', ajuste: true },
+            { day: '05/Set', status: 'Atestado', p_in: '08:00', p_out: '17:00', horasmarcadas: ['Atestado Médico'], total: '08:00', ajuste: true },
         ];
 
-        function renderMirrorTable(records) {
-            mirrorTableBody.innerHTML = '';
-            records.forEach(record => {
-                const statusClass = record.status === 'Presente' || record.status === 'Atestado' ? 'present-status' : 'falta-status';
-                const statusDisplay = record.status === 'Atestado' ? `<span style="color:var(--blue-info);">Atestado</span>` : record.status;
+        function renderTabela(registros) {
+            corpoTabela.innerHTML = '';
+            registros.forEach(registro => {
+                const statusClass = registro.status === 'Presente' || registro.status === 'Atestado' ? 'present-status' : 'falta-status';
+                const statusDisplay = registro.status === 'Atestado' ? `<span style="color:var(--blue-info);">Atestado</span>` : registro.status;
                 
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${record.day}</td>
+                    <td>${registro.day}</td>
                     <td class="status-cell ${statusClass}">${statusDisplay}</td>
-                    <td>${record.p_in} - ${record.p_out}</td>
-                    <td>${record.marks.join(', ')}</td>
-                    <td>${record.total}</td>
-                    <td>${record.adjusted ? 'Sim' : 'Não'}</td>
+                    <td>${registro.p_in} - ${registro.p_out}</td>
+                    <td>${registro.horasmarcadas.join(', ')}</td>
+                    <td>${registro.total}</td>
+                    <td>${registro.ajuste ? 'Sim' : 'Não'}</td>
                 `;
-                mirrorTableBody.appendChild(row);
+                corpoTabela.appendChild(row);
             });
         }
         
-        window.openAdjustmentModal = function() {
-            if (adjustmentModal) {
-                adjustmentModal.style.display = 'flex';
-                adjustmentModal.style.alignItems = 'center';
-                adjustmentModal.style.justifyContent = 'center';
+        window.abrirModalAjuste = function() {
+            if (modalAjuste) {
+                modalAjuste.style.display = 'flex';
+                modalAjuste.style.alignItems = 'center';
+                modalAjuste.style.justifyContent = 'center';
             }
         }
 
-        window.closeAdjustmentModal = function() {
-            if (adjustmentModal) {
-                adjustmentModal.style.display = 'none';
+        window.fecharModalAjuste = function() {
+            if (modalAjuste) {
+                modalAjuste.style.display = 'none';
             }
         }
         
-        if (adjustmentForm) {
-            adjustmentForm.addEventListener('submit', function(e) {
+        if (formAjuste) {
+            formAjuste.addEventListener('submit', function(e) {
                 e.preventDefault();
-                const data = document.getElementById('adjustmentDate').value;
-                const tipo = document.getElementById('adjustmentType').value;
-                const motivo = document.getElementById('adjustmentReason').value;
+                const data = document.getElementById('dataAjuste').value;
+                const tipo = document.getElementById('tipoAjuste').value;
+                const motivo = document.getElementById('motivoAjuste').value;
 
                 if (!data || !tipo || !motivo) {
                     alert('Por favor, preencha todos os campos obrigatórios.');
@@ -201,29 +201,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 alert(`Solicitação de ajuste para ${data} (${tipo}) enviada com sucesso ao gestor!`);
-                adjustmentForm.reset();
-                closeAdjustmentModal();
+                formAjuste.reset();
+                fecharModalAjuste();
             });
         }
         
-        renderMirrorTable(mockRecords);
+        renderTabela(registrosmarcados);
     }
     
     // ----------------------------------------------------
     // Lógica Específica da Página: RELATÓRIOS
     // ----------------------------------------------------
-    if (document.getElementById('employee-select')) {
-        const employeeSelect = document.getElementById('employee-select');
-        const employeeDetailsDiv = document.getElementById('employeeDetails');
-        const employeeNameSpan = document.getElementById('employeeName');
-        const employeeRoleSpan = document.getElementById('employeeRole');
-        const pointTableBody = document.getElementById('pointTableBody');
+    if (document.getElementById('seletor-colaborador')) {
+        const seletorColaborador = document.getElementById('seletor-colaborador');
+        const divDetalhes = document.getElementById('detalhesColaborador');
+        const spanNomeColaborador = document.getElementById('nomeColaborador');
+        const spanFuncaoColaborador = document.getElementById('funcaoColaborador');
+        const corpoTabelaPonto = document.getElementById('corpoTabelaPonto');
         
-        const employeeData = {
+        const dadosColaborador = {
             1: {
                 name: "Ana Lima Silva",
                 role: "Desenvolvedora Web Júnior",
-                records: [
+                registros: [
                     { status: 'Presente', day: 'Segunda, 10/11', p_in: '08:00', p_out: '12:00', r_in1: '08:02', r_out1: '12:05', r_in2: '13:00', r_out2: '17:01' },
                     { status: 'Falta', day: 'Terça, 11/11', p_in: '08:00', p_out: '12:00', r_in1: '-', r_out1: '-', r_in2: '-', r_out2: '-' },
                     { status: 'Presente', day: 'Hoje, 12/11', p_in: '08:00', p_out: '12:00', r_in1: '07:58', r_out1: '12:00', r_in2: '13:00', r_out2: '17:00' },
@@ -232,59 +232,54 @@ document.addEventListener('DOMContentLoaded', () => {
             2: {
                 name: "Bruno Costa",
                 role: "Analista de Marketing Pleno",
-                records: [
+                registros: [
                      { status: 'Presente', day: 'Segunda, 10/11', p_in: '09:00', p_out: '13:00', r_in1: '09:01', r_out1: '13:01', r_in2: '14:00', r_out2: '18:00' },
                 ]
             },
         };
 
-        window.fetchEmployeeData = function() {
-            const employeeId = employeeSelect.value;
+        window.buscarDadosColaborador = function() {
+            const colaboradorID = seletorColaborador.value;
 
-            if (!employeeId) {
+            if (!colaboradorID) {
                 alert("Por favor, selecione um colaborador.");
-                employeeDetailsDiv.style.display = 'none';
+                divDetalhes.style.display = 'none';
                 return;
             }
 
-            const data = employeeData[employeeId];
+            const dados = dadosColaborador[colaboradorID];
             
-            employeeNameSpan.textContent = data.name;
-            employeeRoleSpan.textContent = data.role;
+            spanNomeColaborador.textContent = dados.name;
+            spanFuncaoColaborador.textContent = dados.role;
 
-            renderReportTable(data.records);
-            employeeDetailsDiv.style.display = 'block';
+            renderTabelaRelatorio(dados.registros);
+            divDetalhes.style.display = 'block';
         }
 
-        function renderReportTable(records) {
-            pointTableBody.innerHTML = '';
+        function renderTabelaRelatorio(registros) {
+            corpoTabelaPonto.innerHTML = '';
 
-            records.forEach((record, index) => {
-                const statusClass = record.status === 'Presente' ? 'present-status' : 'falta-status';
+            registros.forEach((registro, index) => {
+                const statusClass = registro.status === 'Presente' ? 'present-status' : 'falta-status';
                 const row = document.createElement('tr');
                 
                 row.innerHTML = `
-                    <td class="status-cell ${statusClass}">${record.status}</td>
-                    <td>${record.day}</td>
-                    <td>${record.p_in}</td>
-                    <td>${record.p_out}</td>
-                    <td>${record.r_in1}</td>
-                    <td>${record.r_out1}</td>
-                    <td>${record.r_in2}</td>
-                    <td>${record.r_out2}</td>
+                    <td class="status-cell ${statusClass}">${registro.status}</td>
+                    <td>${registro.day}</td>
+                    <td>${registro.p_in}</td>
+                    <td>${registro.p_out}</td>
+                    <td>${registro.r_in1}</td>
+                    <td>${registro.r_out1}</td>
+                    <td>${registro.r_in2}</td>
+                    <td>${registro.r_out2}</td>
                     <td>
-                        <button class="edit-btn" onclick="openModal(${index})">
+                        <button class="edit-btn" onclick="#">
                             <i class="fas fa-edit"></i> Alterar
                         </button>
                     </td>
                 `;
-                pointTableBody.appendChild(row);
+                corpoTabelaPonto.appendChild(row);
             });
-        }
-        
-        // Simulação de abertura de modal de edição
-        window.openModal = function(rowIndex) {
-            alert(`Modal de Alteração aberto para o registro #${rowIndex + 1} (Esta função está aqui para simular a edição do registro na tela de relatórios).`);
         }
     }
 });

@@ -27,63 +27,62 @@
             </div>
             <nav class="nav-menu">
                 <ul>
-                   <!-- LINKS DE NAVEGAÇÃO -->
+                   <!--links-->
                     <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
-                    <li class="nav-item ativo-ponto"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li>
-                     <li class="nav-item"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
-                     <li class="nav-item"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+                    <li class="nav-item ativo-ponto"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li> <!--item ativo-->
+                    <li class="nav-item"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
+                    <li class="nav-item"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
                     <li class="nav-item"><a href="config.html"><i class="fas fa-cog"></i> Configurações</a></li>
-                   <!-- Fim dos LINKS -->
-                     <li class="nav-item logout"><a href="#" id="logoutLink"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    <li class="nav-item logout"><a href="#" id="LinkSaida"><i class="fas fa-sign-out-alt"></i> Sair</a></li> <!--LinkSaida JS-->
                 </ul>
              </nav>
-         </div> <!-- FIM CORRETO DA SIDEBAR -->
+         </div> 
         
-        <!-- CONTEÚDO PRINCIPAL: BATER PONTO -->
+        <!--conteudo principal-->
         <div class="conteudo-principal">
             <h1>Registro de Marcação</h1>
 
             <div class="ponto-card">
                 
-                <!-- Exibição do Tempo e Data -->
+                <!--exibição tempo e data-->
                 <div class="tempo-container">
-                    <div id="currentTime" class="horario-atual">10:20:00</div>
-                    <div id="currentDate" class="data-atual">Terça-feira, 30 de Julho de 2025</div>
+                    <div id="horaAtual" class="horario-atual">10:20:00</div>
+                    <div id="dataAtual" class="data-atual">Terça-feira, 30 de Julho de 2025</div>
                 </div>
 
-                <!-- Botão de Marcação -->
-                <button id="punchButton" onclick="handlePunch()">
+                <!--botao marcar ponto-->
+                <button id="botaoPonto" onclick="registrarPonto()">
                     MARCAR PONTO
                 </button>
                 
-                <!-- Exibição do Status Atual -->
-                <div id="statusBox" class="status-atual">
-                    Status Atual: <span id="currentStatus">Fora do Expediente</span>
+                <!--exibição status atual-->
+                <div id="caixaStatus" class="status-atual">
+                    Status Atual: <span id="statusAtual">Fora do Expediente</span>
                 </div>
 
-                <!-- Exibição da Última Marcação -->
+                <!--exibir ultima marcação-->
                 <div class="ultimo-ponto">
-                    Última Marcação: <span id="lastPunchTime">--</span>
+                    Última Marcação: <span id="ultimoPonto">--</span>
                 </div>
                 
-                <!-- Dados Adicionais Coletados/Exibidos -->
+                <!--matricula-->
                 <div class="matricula">
                     Matrícula: <span id="matricula">FP12345</span> | 
-                    <span id="systemDate"></span>
+                    <span id="dataSistema"></span>
                 </div>
             </div>
 
         </div>
     </div>
         
-        <!-- MODAL DE CONFIRMAÇÃO DE SAÍDA (Necessário para a lógica de logout) -->
-    <div id="logoutModal" class="modal">
+        <!--modal de saida-->
+    <div id="ModalSaida" class="modal">
         <div class="modal-content-confirm">
             <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Saída</h3>
             <p>Tem certeza de que deseja sair do sistema Ponto ID?</p>
             <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeLogoutModal()">Cancelar</button>
-                <button class="btn-confirm" onclick="confirmLogout()">Sair</button>
+                <button class="btn-cancel" onclick="fecharModalSaida()">Cancelar</button>
+                <button class="btn-confirm" onclick="confirmarSaida()">Sair</button>
             </div>
         </div>
     </div>

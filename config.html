@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configurações - FlowPoint</title>
-    <!-- Font Awesome para os ícones -->
+    <title>Configurações</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- VÍNCULO AO ARQUIVO CSS UNIFICADO -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body id="body">
-    
-    <!-- INÍCIO DA ESTRUTURA FLEXBOX -->
     <div class="layout-principal">
         
-        <!-- SIDEBAR -->
+        <!--menu lateral-->
         <div class="menu-lateral">
             <div class="logotipo">
                 <span class="logo-texto">Ponto ID</span>
@@ -31,30 +27,24 @@
             </div>
             <nav class="nav-menu">
                 <ul>
-                    <!-- LINKS DE NAVEGAÇÃO -->
+                    <!--Links-->
                     <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
                     <li class="nav-item"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li>
                     <li class="nav-item"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
                     <li class="nav-item"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
-                    <!-- ITEM ATIVO DA PÁGINA -->
-                    <li class="nav-item ativo-config"><a href="config.html"><i class="fas fa-cog"></i> Configurações</a></li>
-                    <!-- LINK DE SAÍDA MODIFICADO PARA CHAMAR A FUNÇÃO JAVASCRIPT -->
-                    <li class="nav-item logout">
-                        <a href="#" id="logoutLink">
-                            <i class="fas fa-sign-out-alt"></i> Sair
-                        </a>
-                    </li>
+                    <li class="nav-item ativo-config"><a href="config.html"><i class="fas fa-cog"></i> Configurações</a></li> <!--item ativo-->
+                    <li class="nav-item logout"><a href="#" id="LinkSaida"><i class="fas fa-sign-out-alt"></i> Sair</a></li> <!--LinkSaida JS-->
                 </ul>
             </nav>
         </div>
         
-        <!-- CONTEÚDO PRINCIPAL: CONFIGURAÇÕES -->
+        <!--Conteudo Pricipal-->
         <div class="conteudo-principal">
             <h1>Configurações do Usuário</h1>
 
             <div class="config-area">
 
-                <!-- 1. Configurações de Perfil -->
+                <!--Configurações de perfil-->
                 <div class="config-card">
                     <h2><i class="fas fa-user-circle"></i> Meu Perfil</h2>
                     <form id="perfilForm">
@@ -77,14 +67,14 @@
         </div>
     </div>
     
-    <!-- MODAL DE CONFIRMAÇÃO DE SAÍDA (Necessário para a lógica de logout) -->
-    <div id="logoutModal" class="modal">
+    <!--modal de saida-->
+    <div id="ModalSaida" class="modal">
         <div class="modal-content-confirm">
             <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Saída</h3>
             <p>Tem certeza de que deseja sair do sistema Ponto ID?</p>
             <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeLogoutModal()">Cancelar</button>
-                <button class="btn-confirm" onclick="confirmLogout()">Sair</button>
+                <button class="btn-cancel" onclick="fecharModalSaida()">Cancelar</button>
+                <button class="btn-confirm" onclick="confirmarSaida()">Sair</button>
             </div>
         </div>
     </div>

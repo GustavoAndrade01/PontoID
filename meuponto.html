@@ -11,13 +11,12 @@
    
     <div class="layout-principal">
         
-        <!-- SIDEBAR -->
+        <!--menu lateral-->
         <div class="menu-lateral">
             <div class="logotipo">
                 <span class="logo-texto">Ponto ID</span>
             </div>
             <div class="perfil-usuario">
-                <!-- Foto fictícia -->
                 <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=G" alt="Foto de Perfil" class="foto-perfil">
                 <div class="info-usuario">
                     <span class="nome-usuario">Olá, Gustavo</span>
@@ -29,27 +28,22 @@
             </div>
             <nav class="nav-menu">
                 <ul>
-                    <!-- LINKS DE NAVEGAÇÃO -->
+                    <!--links-->
                     <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
                     <li class="nav-item"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li>
-                    <li class="nav-item ativo-meuponto"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
+                    <li class="nav-item ativo-meuponto"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li> <!--item ativo-->
                     <li class="nav-item"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
                     <li class="nav-item"><a href="config.html"><i class="fas fa-cog"></i> Configurações</a></li>
-                    <!-- Fim dos LINKS -->
-                    <li class="nav-item logout">
-                        <a href="#" id="logoutLink">
-                            <i class="fas fa-sign-out-alt"></i> Sair
-                        </a>
-                    </li>
+                    <li class="nav-item logout"><a href="#" id="LinkSaida"><i class="fas fa-sign-out-alt"></i> Sair</a></li> <!--LinkSaida JS-->
                 </ul>
             </nav>
         </div>
         
-        <!-- CONTEÚDO PRINCIPAL: MEU PONTO -->
+        <!--conteudo principal-->
         <div class="conteudo-principal">
             <h1>Meu Ponto</h1>
             
-            <!-- Cards de Saldos de Horas -->
+            <!--cards saldo de horas-->
             <div class="saldo-cards">
                 <div class="info-card neutro">
                     <div class="titulo">Banco de Horas (Saldo)</div>
@@ -69,7 +63,7 @@
                 </div>
             </div>
 
-            <!-- Espelho de Ponto (Tabela) -->
+            <!--tabela ponto-->
             <div class="secao-registro-ponto">
                 <div class="titulo-tabela">
                     <h2>Espelho de Ponto: <span id="currentPeriod">Setembro/2025</span></h2>
@@ -78,7 +72,7 @@
                             <option value="setembro">Setembro/2025</option>
                             <option value="agosto">Agosto/2025</option>
                         </select>
-                        <button class="ajuste-btn" onclick="openAdjustmentModal()">
+                        <button class="ajuste-btn" onclick="abrirModalAjuste()">
                             <i class="fas fa-wrench"></i> Solicitar Ajuste
                         </button>
                     </div>
@@ -96,9 +90,7 @@
                                 <th>Ajuste Solicitado?</th>
                             </tr>
                         </thead>
-                        <tbody id="mirrorTableBody">
-                            <!-- Dados serão injetados pelo JavaScript -->
-                        </tbody>
+                        <tbody id="corpoTabela"></tbody>
                     </table>
                 </div>
             </div>
@@ -106,21 +98,21 @@
         </div>
     </div>
     
-    <!-- MODAL DE SOLICITAÇÃO DE AJUSTE -->
-    <div id="adjustmentModal" class="modal">
+    <!--modal de ajuste-->
+    <div id="modalAjuste" class="modal">
         <div class="conteudo-modal">
-            <span class="fechar-btn" onclick="closeAdjustmentModal()">&times;</span>
+            <span class="fechar-btn" onclick="fecharModalAjuste()">&times;</span>
             <h3>Solicitar Ajuste ou Justificativa</h3>
 
-            <form id="adjustmentForm">
+            <form id="formAjuste">
                 <div class="form-grupo">
-                    <label for="adjustmentDate">Data do Ajuste:</label>
-                    <input type="date" id="adjustmentDate" required>
+                    <label for="dataAjuste">Data do Ajuste:</label>
+                    <input type="date" id="dataAjuste" required>
                 </div>
                 
                 <div class="form-grupo">
-                    <label for="adjustmentType">Tipo de Solicitação:</label>
-                    <select id="adjustmentType" required>
+                    <label for="tipoAjuste">Tipo de Solicitação:</label>
+                    <select id="tipoAjuste" required>
                         <option value="">-- Selecione --</option>
                         <option value="falta_marcação">Falta de Marcação (Esqueci)</option>
                         <option value="ajuste_horario">Ajuste de Horário (Erro)</option>
@@ -128,16 +120,14 @@
                     </select>
                 </div>
                 
-                <!-- Campos para ajuste de horário (opcional, mostrarei apenas data e motivo) -->
-
                 <div class="form-grupo">
                     <label for="adjustmentTime">Marcação Real (Hora e Minuto):</label>
                     <input type="time" id="adjustmentTime">
                 </div>
 
                 <div class="form-grupo">
-                    <label for="adjustmentReason">Motivo / Detalhes (Obrigatório):</label>
-                    <textarea id="adjustmentReason" rows="4" required placeholder="Descreva o motivo da sua solicitação..."></textarea>
+                    <label for="motivoAjuste">Motivo / Detalhes (Obrigatório):</label>
+                    <textarea id="motivoAjuste" rows="4" required placeholder="Descreva o motivo da sua solicitação..."></textarea>
                 </div>
                 
                 <button type="submit" class="enviar-modal-btn">Enviar Solicitação</button>
@@ -145,14 +135,14 @@
         </div>
     </div>
 
-            <!-- MODAL DE CONFIRMAÇÃO DE SAÍDA (Necessário para a lógica de logout) -->
-    <div id="logoutModal" class="modal">
+            <!--modal de saida-->
+    <div id="ModalSaida" class="modal">
         <div class="modal-content-confirm">
             <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Saída</h3>
             <p>Tem certeza de que deseja sair do sistema Ponto ID?</p>
             <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeLogoutModal()">Cancelar</button>
-                <button class="btn-confirm" onclick="confirmLogout()">Sair</button>
+                <button class="btn-cancel" onclick="fecharModalSaida()">Cancelar</button>
+                <button class="btn-confirm" onclick="confirmarSaida()">Sair</button>
             </div>
         </div>
     </div>

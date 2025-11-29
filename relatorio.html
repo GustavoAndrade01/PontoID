@@ -11,7 +11,7 @@
     
     <div class="layout-principal">
         
-        <!-- SIDEBAR -->
+        <!--menu lateral-->
         <div class="menu-lateral">
             <div class="logotipo">
                 <span class="logo-texto">Ponto ID</span>
@@ -28,32 +28,26 @@
             </div>
             <nav class="nav-menu">
                 <ul>
-                    <!-- LINKS ATUALIZADOS -->
+                    <!--links-->
                     <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
                     <li class="nav-item"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li>
                     <li class="nav-item"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
-                    <!-- O item ativo aponta para a própria página (relatorio-ponto.html) -->
-                    <li class="nav-item ativo-relatorio"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+                    <li class="nav-item ativo-relatorio"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li> <!--item ativo-->
                     <li class="nav-item"><a href="config.html"><i class="fas fa-cog"></i>Configurações</a></li>
-                    <!-- Fim dos LINKS ATUALIZADOS -->
-                    <li class="nav-item logout">
-                        <a href="#" id="logoutLink">
-                            <i class="fas fa-sign-out-alt"></i> Sair
-                        </a>
-                    </li>
+                    <li class="nav-item logout"><a href="#" id="LinkSaida"><i class="fas fa-sign-out-alt"></i> Sair</a></li> <!--LinkSaida JS-->
                 </ul>
             </nav>
         </div>
         
-        <!-- CONTEÚDO PRINCIPAL: RELATÓRIOS -->
+        <!--conteudo principal-->
         <div class="conteudo-principal">
             <h1>Relatório de Ponto por Colaborador</h1>
 
-            <!-- Seção de Filtros e Busca -->
+            <!--buscar colaborador-->
             <div class="secao-filtros">
                 <div class="grupo-filtro">
-                    <label for="employee-select">Selecione o Colaborador:</label>
-                    <select id="employee-select">
+                    <label for="seletor-colaborador">Selecione o Colaborador:</label>
+                    <select id="seletor-colaborador">
                         <option value="">-- Selecione um Funcionário --</option>
                         <option value="1">Ana Lima (Desenvolvedora)</option>
                         <option value="2">Bruno Costa (Marketing)</option>
@@ -62,26 +56,26 @@
                 </div>
                 
                 <div class="grupo-filtro">
-                    <button class="buscar-btn" onclick="fetchEmployeeData()">
+                    <button class="buscar-btn" onclick="buscarDadosColaborador()">
                         <i class="fas fa-search"></i> Buscar Ponto
                     </button>
                 </div>
             </div>
 
-            <!-- Detalhes do Funcionário (Inicialmente oculto) -->
-            <div id="employeeDetails">
+            <!--detalhes colaborador-->
+            <div id="detalhesColaborador">
                 <div class="colaborador-info-card">
                     <div class="info-grupo">
                         <span class="info-nome-colaborador">Colaborador:</span>
-                        <span class="info-valor" id="employeeName">Nome do Colaborador</span>
+                        <span class="info-valor" id="nomeColaborador">Nome do Colaborador</span>
                     </div>
                     <div class="info-grupo">
                         <span class="info-nome-colaborador">Função:</span>
-                        <span class="info-valor" id="employeeRole">Função</span>
+                        <span class="info-valor" id="funcaoColaborador">Função</span>
                     </div>
                 </div>
                 
-                <!-- Tabela de Registros de Ponto -->
+                <!--tabela de registro de ponto-->
                 <div class="secao-registro-ponto">
                     <h2>Registros de Ponto da Semana</h2>
                     
@@ -99,8 +93,7 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody id="pointTableBody">
-                            <!-- Os dados serão inseridos aqui pelo JavaScript -->
+                        <tbody id="corpoTabelaPonto">
                             <tr><td colspan="9">Selecione um funcionário e clique em Buscar.</td></tr>
                         </tbody>
                     </table>
@@ -110,14 +103,14 @@
         </div>
     </div>
 
-           <!-- MODAL DE CONFIRMAÇÃO DE SAÍDA (Necessário para a lógica de logout) -->
-    <div id="logoutModal" class="modal">
+           <!--modal de saida-->
+    <div id="ModalSaida" class="modal">
         <div class="modal-content-confirm">
             <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Saída</h3>
             <p>Tem certeza de que deseja sair do sistema Ponto ID?</p>
             <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeLogoutModal()">Cancelar</button>
-                <button class="btn-confirm" onclick="confirmLogout()">Sair</button>
+                <button class="btn-cancel" onclick="fecharModalSaida()">Cancelar</button>
+                <button class="btn-confirm" onclick="confirmarSaida()">Sair</button>
             </div>
         </div>
     </div>

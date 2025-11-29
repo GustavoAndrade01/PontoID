@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Garante que a página ocupe toda a altura da tela */
+    min-height: 100vh; 
 }
 
 .login-container {
@@ -19,7 +19,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px; /* Define uma largura máxima para o formulário */
+    max-width: 400px;
 }
 
 .login-form h2 {
@@ -80,7 +80,7 @@ body {
     text-decoration: underline;
 }
 
-/* Responsividade (opcional, mas recomendado) */
+/* Responsividade */
 @media (max-width: 500px) {
     .login-container {
         margin: 20px;
@@ -90,15 +90,15 @@ body {
 
 :root {
     --sidebar-width: 250px;
-    --primary-color: #315277; /* Azul escuro do fundo do menu */
-    --hover-color: #1a5bb0; /* Azul escuro para hover de botões */
-    --active-color: #2b70d4; /* Azul mais claro do item ativo */
-    --text-color: #ddeeff; /* Cor do texto claro (sidebar) */
-    --text-color-dark: #666; /* Cor do texto cinza escuro */
+    --primary-color: #315277;
+    --hover-color: #1a5bb0; 
+    --active-color: #2b70d4; 
+    --text-color: #ddeeff; 
+    --text-color-dark: #666; 
     --border-color: rgba(255, 255, 255, 0.1);
-    --bg-light: #f4f4f4; /* Fundo da página */
-    --bg-card: #fff; /* Fundo dos cards/modais */
-    --text-primary: #333; /* Cor principal do texto */
+    --bg-light: #f4f4f4; 
+    --bg-card: #fff; 
+    --text-primary: #333; 
     
     /* Cores de status */
     --green-success: #28a745;
@@ -110,9 +110,7 @@ body {
     --green-card: #38b46a;
 }
 
-/* ---------------------------------- */
-/* 1. RESET E LAYOUT PRINCIPAL */
-/* ---------------------------------- */
+    /* layout principal*/
 * {
     margin: 0;
     padding: 0;
@@ -147,7 +145,7 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
-    /*MENU LATERAL*/
+    /*menu lateral*/
 .menu-lateral {
     position: fixed;
     top: 0;
@@ -166,7 +164,7 @@ body {
 .logotipo { padding: 0 20px 20px 20px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px; }
 .logo-texto { font-size: 1.5em; font-weight: bold; }
 
-/* Perfil */
+    /*perfil*/
 .perfil-usuario { display: flex; align-items: center; padding: 10px 20px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
 .foto-perfil { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px; border: 2px solid var(--active-color); }
 .info-usuario { display: flex; flex-direction: column; flex-grow: 1; overflow: hidden; }
@@ -175,14 +173,14 @@ body {
 .config-btn { background: none; border: none; color: var(--text-color); font-size: 1.1em; cursor: pointer; margin-left: 10px; padding: 5px; transition: color 0.2s; }
 .config-btn:hover { color: #fff; }
 
-/* Navegação */
+    /*Navegação*/
 .nav-menu ul { list-style: none; padding: 0; }
 .nav-item { margin-bottom: 5px; }
 .nav-item a { display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: var(--text-color); font-size: 1em; transition: background-color 0.2s, color 0.2s; }
 .nav-item a i { margin-right: 10px; width: 20px; text-align: center; }
 .nav-item a:hover { background-color: var(--hover-color); color: #fff; }
 
-/* Classes Ativas por Página */
+    /*classes item ativo*/
 .nav-item.ativo a,
 .nav-item.ativo-ponto a,
 .nav-item.ativo-meuponto a,
@@ -199,9 +197,7 @@ body {
 .nav-item.logout a:hover { background-color: var(--hover-color); color: #fff; }
 
 
-/* ---------------------------------- */
-/* 3. DASHBOARD CARDS (INDEX.HTML) */
-/* ---------------------------------- */
+    /*cards dashboard*/
 .dashboard-cards {
     display: flex;
     justify-content: center;
@@ -219,7 +215,7 @@ body {
     flex-grow: 1;
     flex-basis: 250px;
     max-width: 300px;
-    display: flex; /* Garante que o link ocupe todo o espaço */
+    display: flex; 
 }
 
 .card {
@@ -236,7 +232,7 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
     text-align: center;
     padding: 25px;
-    width: 100%; /* Ocupa a largura total do card-link */
+    width: 100%; 
 }
 
 .card:hover {
@@ -259,9 +255,7 @@ body {
 .card.laranja { background-color: var(--orange-card); }
 
 
-/* ---------------------------------- */
-/* 4. BATER PONTO (BATER-PONTO.HTML) */
-/* ---------------------------------- */
+    /*bater ponto*/
 .ponto-card {
     background-color: var(--bg-card);
     padding: 40px;
@@ -296,7 +290,7 @@ body {
     margin-bottom: 25px;
 }
 
-#punchButton {
+#botaoPonto {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -310,8 +304,8 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#punchButton:hover { background-color: #2b9157; transform: scale(1.05); }
-#punchButton:active { transform: scale(0.95); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
+#botaoPonto:hover { background-color: #2b9157; transform: scale(1.05); }
+#botaoPonto:active { transform: scale(0.95); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
 
 .status-atual {
     margin-top: 30px;
@@ -330,11 +324,7 @@ body {
 .status-work { border-left: 5px solid var(--green-card); color: var(--green-card); }
 .status-break { border-left: 5px solid var(--orange-card); color: var(--orange-card); }
 
-/* ---------------------------------- */
-/* 5. MEU PONTO / RELATÓRIOS (TABELAS) */
-/* ---------------------------------- */
-
-/* Cards de Saldo (Meu Ponto) */
+    /*meu ponto cards*/
 .saldo-cards {
     display: flex;
     gap: 20px;
@@ -358,7 +348,7 @@ body {
 .negativo .saldo { color: var(--red-danger); }
 .neutro .saldo { color: var(--blue-info); }
 
-/* Tabela e Filtros */
+    /*tabela e buscar*/
 .cabecalho-tabela {
     overflow-x: auto;
     width: 100%;
@@ -427,7 +417,7 @@ body {
 .present-status { color: var(--green-success); }
 .falta-status { color: var(--red-danger); background-color: #fff0f0; }
 
-/* Informações do Colaborador (Relatórios) */
+    /*informações do Colaborador*/
 .colaborador-info-card {
     background-color: var(--bg-card);
     border-radius: 8px;
@@ -444,9 +434,7 @@ body {
 .info-nome-colaborador { font-size: 0.9em; color: var(--text-color-dark); margin-bottom: 3px; }
 .info-valor { font-size: 1.2em; font-weight: bold; color: var(--text-primary); }
 
-/* ---------------------------------- */
-/* 6. CONFIGURAÇÕES (CONFIGURACOES.HTML) */
-/* ---------------------------------- */
+    /*configurações*/
 .config-area { display: flex; flex-direction: column; gap: 30px; max-width: 800px; }
 .config-card { background-color: var(--bg-card); padding: 30px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); transition: background-color 0.3s; }
 .config-card h2 { color: var(--primary-color); border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; font-size: 1.4em; }
@@ -460,9 +448,7 @@ body {
 .salvar-btn { background-color: var(--active-color); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background-color 0.2s; margin-top: 10px; }
 .salvar-btn:hover { background-color: var(--hover-color); }
 
-/* ---------------------------------- */
-/* 7. MODAL GERAL (AJUSTE/LOGOUT) */
-/* ---------------------------------- */
+    /*modal de saida*/
 .modal {
     display: none; 
     position: fixed;
@@ -475,7 +461,7 @@ body {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-/* Modal de Ajuste/Edição (usado em Meu Ponto e Relatórios) */
+    /*modal de ajuste*/
 .conteudo-modal {
     background-color: var(--bg-card);
     padding: 30px;
@@ -487,7 +473,7 @@ body {
     animation: fadeIn 0.3s; 
 }
 
-/* Modal de Confirmação (Logout) */
+    /*modal de confirmação de saida*/
 .modal-content-confirm {
     background-color: var(--bg-card);
     padding: 30px;
@@ -511,7 +497,7 @@ body {
 .fechar-btn:hover, .fechar-btn:focus { color: #333; text-decoration: none; }
 
 
-/* Formulário de Ajuste (Dentro do Modal) */
+    /*formulario de ajuste*/
 .conteudo-modal h3 { color: var(--primary-color); margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; font-size: 1.4em; }
 .form-grupo { margin-bottom: 15px; }
 .form-grupo label { display: block; font-weight: 500; color: #555; margin-bottom: 5px; }
@@ -519,9 +505,7 @@ body {
 .enviar-modal-btn { background-color: var(--green-success); color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; width: 100%; font-weight: bold; }
 
 
-/* ---------------------------------- */
-/* 8. MEDIA QUERIES (RESPONSIVIDADE) */
-/* ---------------------------------- */
+    /*responsividade*/
 @media (max-width: 900px) {
     .conteudo-principal {
         padding: 20px;
@@ -544,6 +528,7 @@ body {
         align-items: flex-start;
         gap: 10px;
     }
+    
     /* Rolar tabelas em telas menores */
     .secao-registro-ponto {
         overflow-x: auto;
