@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             punchButton.textContent = nextState.buttonText;
             currentStatusElement.textContent = currentPunchState.status;
-            statusBox.className = `status-box ${currentPunchState.statusClass}`;
+            statusBox.className = `status-atual ${currentPunchState.statusClass}`;
         }
         
         window.handlePunch = function() {

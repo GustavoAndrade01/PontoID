@@ -12,20 +12,20 @@
 <body id="body">
     
     <!-- INÍCIO DA ESTRUTURA FLEXBOX -->
-    <div class="main-layout">
+    <div class="layout-principal">
         
         <!-- SIDEBAR -->
         <div class="menu-lateral">
             <div class="logotipo">
-                <span class="logo-text">Ponto ID</span>
+                <span class="logo-texto">Ponto ID</span>
             </div>
-            <div class="user-profile">
-                <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=G" alt="Foto de Perfil" class="profile-pic">
-                <div class="user-info">
-                    <span class="user-name">Olá, Gustavo</span>
-                    <span class="user-status">Administrador</span>
+            <div class="perfil-usuario">
+                <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=G" alt="Foto de Perfil" class="foto-perfil">
+                <div class="info-usuario">
+                    <span class="nome-usuario">Olá, Gustavo</span>
+                    <span class="cargo-usuario">Administrador</span>
                 </div>
-                <a href="config.html" class="settings-btn" aria-label="Configurações">
+                <a href="config.html" class="config-btn" aria-label="Configurações">
                     <i class="fas fa-cog"></i>
                 </a>
             </div>
@@ -37,7 +37,7 @@
                     <li class="nav-item"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
                     <li class="nav-item"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
                     <!-- ITEM ATIVO DA PÁGINA -->
-                    <li class="nav-item active-settings"><a href="config.html"><i class="fas fa-cog"></i> Configurações</a></li>
+                    <li class="nav-item ativo-config"><a href="config.html"><i class="fas fa-cog"></i> Configurações</a></li>
                     <!-- LINK DE SAÍDA MODIFICADO PARA CHAMAR A FUNÇÃO JAVASCRIPT -->
                     <li class="nav-item logout">
                         <a href="#" id="logoutLink">
@@ -49,28 +49,28 @@
         </div>
         
         <!-- CONTEÚDO PRINCIPAL: CONFIGURAÇÕES -->
-        <div class="main-content">
+        <div class="conteudo-principal">
             <h1>Configurações do Usuário</h1>
 
-            <div class="settings-area">
+            <div class="config-area">
 
                 <!-- 1. Configurações de Perfil -->
-                <div class="settings-card">
+                <div class="config-card">
                     <h2><i class="fas fa-user-circle"></i> Meu Perfil</h2>
-                    <form id="profileForm">
-                        <div class="form-group">
+                    <form id="perfilForm">
+                        <div class="form-grupo">
                             <label for="fullName">Nome Completo</label>
                             <input type="text" id="fullName" value="Gustavo Andrade" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-grupo">
                             <label for="userEmail">E-mail</label>
                             <input type="email" id="userEmail" value="adm01@gmail.com" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-grupo">
                             <label for="userRole">Função</label>
                             <input type="text" id="userRole" value="Gerente" disabled>
                         </div>
-                        <button type="submit" class="save-btn">Salvar Perfil</button>
+                        <button type="submit" class="salvar-btn">Salvar Perfil</button>
                     </form>
                 </div>
             </div>
@@ -81,7 +81,7 @@
     <div id="logoutModal" class="modal">
         <div class="modal-content-confirm">
             <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Saída</h3>
-            <p>Tem certeza de que deseja sair do sistema FlowPoint?</p>
+            <p>Tem certeza de que deseja sair do sistema Ponto ID?</p>
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="closeLogoutModal()">Cancelar</button>
                 <button class="btn-confirm" onclick="confirmLogout()">Sair</button>

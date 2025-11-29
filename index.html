@@ -8,26 +8,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body id="body">
-    <div class="main-layout">
+    <div class="layout-principal">
         <!-- SIDEBAR -->
         <div class="menu-lateral">
             <div class="logotipo">
-                <span class="logo-text">Ponto ID</span>
+                <span class="logo-texto">Ponto ID</span>
             </div>
-            <div class="user-profile">
-                <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=G" alt="Foto de Perfil" class="profile-pic">
-                <div class="user-info">
-                    <span class="user-name">Olá, Gustavo</span>
-                    <span class="user-status">Administrador</span>
+            <div class="perfil-usuario">
+                <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=G" alt="Foto de Perfil" class="foto-perfil">
+                <div class="info-usuario">
+                    <span class="nome-usuario">Olá, Gustavo</span>
+                    <span class="cargo-usuario">Administrador</span>
                 </div>
-                <a href="config.html" class="settings-btn" aria-label="Configurações">
+                <a href="config.html" class="config-btn" aria-label="Configurações">
                     <i class="fas fa-cog"></i>
                 </a>
             </div>
             <nav class="nav-menu">
                 <ul>
                     <!-- ITEM ATIVO (DASHBOARD) -->
-                    <li class="nav-item active"><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li class="nav-item ativo"><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
                     <!-- LINKS DE NAVEGAÇÃO -->
                     <li class="nav-item"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li>
                     <li class="nav-item"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
@@ -44,7 +44,7 @@
         </div>
         
         <!-- CONTEÚDO PRINCIPAL: DASHBOARD -->
-        <div class="main-content">
+        <div class="conteudo-principal">
             <h1>Dashboard</h1>
 
             <!-- CARDS DE ACESSO RÁPIDO (VERDE, AZUL, LARANJA) -->
@@ -52,25 +52,25 @@
                 
                 <!-- Cartão Verde (Bater Ponto) -->
                 <a href="ponto.html" class="card-link">
-                    <div class="card green">
+                    <div class="card verde">
                         <i class="fas fa-clock card-icon"></i>
-                        <p class="card-title">Bater Ponto</p>
+                        <p class="titulo-card">Bater Ponto</p>
                     </div>
                 </a>
 
                 <!-- Cartão Azul (Meu Ponto) -->
                  <a href="meuponto.html" class="card-link">
-                    <div class="card blue">
+                    <div class="card azul">
                         <i class="fas fa-file-alt card-icon"></i>
-                        <p class="card-title">Meu Ponto</p>
+                        <p class="titulo-card">Meu Ponto</p>
                     </div>
                 </a>
 
                 <!-- Cartão Laranja (Relatórios) -->
                 <a href="relatorio.html" class="card-link">
-                    <div class="card orange">
+                    <div class="card laranja">
                         <i class="fas fa-chart-bar card-icon"></i>
-                        <p class="card-title">Relatórios</p>
+                        <p class="titulo-card">Relatórios</p>
                     </div>
                 </a>
             </div>
@@ -79,7 +79,7 @@
     <div id="logoutModal" class="modal">
         <div class="modal-content-confirm">
             <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Saída</h3>
-            <p>Tem certeza de que deseja sair do sistema FlowPoint?</p>
+            <p>Tem certeza de que deseja sair do sistema Ponto ID?</p>
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="closeLogoutModal()">Cancelar</button>
                 <button class="btn-confirm" onclick="confirmLogout()">Sair</button>

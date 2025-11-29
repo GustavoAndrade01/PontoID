@@ -9,20 +9,20 @@
 </head>
 <body id="body">
     
-    <div class="main-layout">
+    <div class="layout-principal">
         
         <!-- SIDEBAR -->
         <div class="menu-lateral">
             <div class="logotipo">
-                <span class="logo-text">Ponto ID</span>
+                <span class="logo-texto">Ponto ID</span>
             </div>
-            <div class="user-profile">
-                <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=G" alt="Foto de Perfil" class="profile-pic">
-                <div class="user-info">
-                    <span class="user-name">Olá, Gustavo</span>
-                    <span class="user-status">Administrador</span>
+            <div class="perfil-usuario">
+                <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=G" alt="Foto de Perfil" class="foto-perfil">
+                <div class="info-usuario">
+                    <span class="nome-usuario">Olá, Gustavo</span>
+                    <span class="cargo-usuario">Administrador</span>
                 </div>
-                <a href="config.html" class="settings-btn" aria-label="Configurações">
+                <a href="config.html" class="config-btn" aria-label="Configurações">
                     <i class="fas fa-cog"></i>
                 </a>
             </div>
@@ -33,7 +33,7 @@
                     <li class="nav-item"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li>
                     <li class="nav-item"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
                     <!-- O item ativo aponta para a própria página (relatorio-ponto.html) -->
-                    <li class="nav-item active-report"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+                    <li class="nav-item ativo-relatorio"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
                     <li class="nav-item"><a href="config.html"><i class="fas fa-cog"></i>Configurações</a></li>
                     <!-- Fim dos LINKS ATUALIZADOS -->
                     <li class="nav-item logout">
@@ -46,12 +46,12 @@
         </div>
         
         <!-- CONTEÚDO PRINCIPAL: RELATÓRIOS -->
-        <div class="main-content">
+        <div class="conteudo-principal">
             <h1>Relatório de Ponto por Colaborador</h1>
 
             <!-- Seção de Filtros e Busca -->
-            <div class="filters-section">
-                <div class="filter-group">
+            <div class="secao-filtros">
+                <div class="grupo-filtro">
                     <label for="employee-select">Selecione o Colaborador:</label>
                     <select id="employee-select">
                         <option value="">-- Selecione um Funcionário --</option>
@@ -61,8 +61,8 @@
                     </select>
                 </div>
                 
-                <div class="filter-group">
-                    <button class="search-btn" onclick="fetchEmployeeData()">
+                <div class="grupo-filtro">
+                    <button class="buscar-btn" onclick="fetchEmployeeData()">
                         <i class="fas fa-search"></i> Buscar Ponto
                     </button>
                 </div>
@@ -70,22 +70,22 @@
 
             <!-- Detalhes do Funcionário (Inicialmente oculto) -->
             <div id="employeeDetails">
-                <div class="employee-info-card">
-                    <div class="info-group">
-                        <span class="info-label">Colaborador:</span>
-                        <span class="info-value" id="employeeName">Nome do Colaborador</span>
+                <div class="colaborador-info-card">
+                    <div class="info-grupo">
+                        <span class="info-nome-colaborador">Colaborador:</span>
+                        <span class="info-valor" id="employeeName">Nome do Colaborador</span>
                     </div>
-                    <div class="info-group">
-                        <span class="info-label">Função:</span>
-                        <span class="info-value" id="employeeRole">Função</span>
+                    <div class="info-grupo">
+                        <span class="info-nome-colaborador">Função:</span>
+                        <span class="info-valor" id="employeeRole">Função</span>
                     </div>
                 </div>
                 
                 <!-- Tabela de Registros de Ponto -->
-                <div class="point-records-section">
+                <div class="secao-registro-ponto">
                     <h2>Registros de Ponto da Semana</h2>
                     
-                    <table class="point-table">
+                    <table class="tabela-ponto">
                         <thead>
                             <tr>
                                 <th>Status</th>
@@ -114,7 +114,7 @@
     <div id="logoutModal" class="modal">
         <div class="modal-content-confirm">
             <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Saída</h3>
-            <p>Tem certeza de que deseja sair do sistema FlowPoint?</p>
+            <p>Tem certeza de que deseja sair do sistema Ponto ID?</p>
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="closeLogoutModal()">Cancelar</button>
                 <button class="btn-confirm" onclick="confirmLogout()">Sair</button>

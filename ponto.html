@@ -8,20 +8,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body id="body">
-    <div class="main-layout">
+    <div class="layout-principal">
         <!--sidebar-->
          <div class="menu-lateral"> 
            <div class="logotipo">
-           <span class="logo-text">Ponto ID</span>
+           <span class="logo-texto">Ponto ID</span>
          </div>
 
-             <div class="user-profile">
-                <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=G" alt="Foto de Perfil" class="profile-pic">
-                 <div class="user-info">
-                    <span class="user-name">Olá, Gustavo</span>
-                    <span class="user-status">Administrador</span>
+             <div class="perfil-usuario">
+                <img src="https://placehold.co/40x40/4a8ff5/ffffff?text=G" alt="Foto de Perfil" class="foto-perfil">
+                 <div class="info-usuario">
+                    <span class="nome-usuario">Olá, Gustavo</span>
+                    <span class="cargo-usuario">Administrador</span>
                 </div>
-                <a href="config.html" class="settings-btn" aria-label="Configurações">
+                <a href="config.html" class="config-btn" aria-label="Configurações">
                     <i class="fas fa-cog"></i>
                 </a>
             </div>
@@ -29,7 +29,7 @@
                 <ul>
                    <!-- LINKS DE NAVEGAÇÃO -->
                     <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
-                    <li class="nav-item active-point"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li>
+                    <li class="nav-item ativo-ponto"><a href="ponto.html"><i class="fas fa-clock"></i> Bater Ponto</a></li>
                      <li class="nav-item"><a href="meuponto.html"><i class="fas fa-file-alt"></i> Meu Ponto</a></li>
                      <li class="nav-item"><a href="relatorio.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
                     <li class="nav-item"><a href="config.html"><i class="fas fa-cog"></i> Configurações</a></li>
@@ -40,15 +40,15 @@
          </div> <!-- FIM CORRETO DA SIDEBAR -->
         
         <!-- CONTEÚDO PRINCIPAL: BATER PONTO -->
-        <div class="main-content">
+        <div class="conteudo-principal">
             <h1>Registro de Marcação</h1>
 
-            <div class="punch-card">
+            <div class="ponto-card">
                 
                 <!-- Exibição do Tempo e Data -->
-                <div class="time-container">
-                    <div id="currentTime" class="time-display">10:20:00</div>
-                    <div id="currentDate" class="date-display">Terça-feira, 30 de Julho de 2025</div>
+                <div class="tempo-container">
+                    <div id="currentTime" class="horario-atual">10:20:00</div>
+                    <div id="currentDate" class="data-atual">Terça-feira, 30 de Julho de 2025</div>
                 </div>
 
                 <!-- Botão de Marcação -->
@@ -57,41 +57,30 @@
                 </button>
                 
                 <!-- Exibição do Status Atual -->
-                <div id="statusBox" class="status-box">
+                <div id="statusBox" class="status-atual">
                     Status Atual: <span id="currentStatus">Fora do Expediente</span>
                 </div>
 
                 <!-- Exibição da Última Marcação -->
-                <div class="last-punch">
+                <div class="ultimo-ponto">
                     Última Marcação: <span id="lastPunchTime">--</span>
                 </div>
                 
                 <!-- Dados Adicionais Coletados/Exibidos -->
-                <div class="hidden-info">
+                <div class="matricula">
                     Matrícula: <span id="matricula">FP12345</span> | 
-                    Dia do Sistema: <span id="systemDate"></span>
+                    <span id="systemDate"></span>
                 </div>
             </div>
 
         </div>
     </div>
-
-        <div id="logoutModal" class="modal">
-            <div class="modal-content-confirm">
-                <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Saída</h3>
-                <p>Tem certeza de que deseja sair do sistema FlowPoint?</p>
-                <div class="modal-actions">
-                    <button class="btn-cancel" onclick="closeLogoutModal()">Cancelar</button>
-                    <button class="btn-confirm" onclick="confirmLogout()">Sair</button>
-                </div>
-            </div>
-        </div>
         
         <!-- MODAL DE CONFIRMAÇÃO DE SAÍDA (Necessário para a lógica de logout) -->
     <div id="logoutModal" class="modal">
         <div class="modal-content-confirm">
             <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Saída</h3>
-            <p>Tem certeza de que deseja sair do sistema FlowPoint?</p>
+            <p>Tem certeza de que deseja sair do sistema Ponto ID?</p>
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="closeLogoutModal()">Cancelar</button>
                 <button class="btn-confirm" onclick="confirmLogout()">Sair</button>
