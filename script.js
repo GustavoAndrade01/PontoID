@@ -48,55 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ----------------------------------------------------
-    // Lógica Específica da Página: CONFIGURAÇÕES
-    // ----------------------------------------------------
-    
-    if (body && document.getElementById('darkModeToggle')) {
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const profileForm = document.getElementById('profileForm');
-
-        // Inicializa o tema ao carregar
-        function initializeTheme() {
-            const savedTheme = localStorage.getItem(STORAGE_KEY_THEME) || 'light';
-            if (savedTheme === 'dark') {
-                body.classList.add('dark-mode');
-                darkModeToggle.checked = true;
-            } else {
-                body.classList.remove('dark-mode');
-                darkModeToggle.checked = false;
-            }
-        }
-
-        // Alterna entre modo claro/escuro
-        window.toggleDarkMode = function() {
-            body.classList.toggle('dark-mode');
-            const newTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-            localStorage.setItem(STORAGE_KEY_THEME, newTheme);
-            console.log(`Tema alterado para: ${newTheme}`);
-        }
-
-        darkModeToggle.addEventListener('change', toggleDarkMode);
-        
-        // Simulação de salvamento do Perfil
-        if (profileForm) {
-            profileForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const fullName = document.getElementById('fullName').value;
-                const email = document.getElementById('userEmail').value;
-                alert(`Perfil de ${fullName} atualizado com sucesso!`);
-            });
-        }
-        
-        // Simulação de salvamento da Aparência
-        window.saveAppearanceSettings = function() {
-            const language = document.getElementById('languageSelect').value;
-            alert(`Configurações de aparência e idioma (${language}) salvas!`);
-        }
-        
-        initializeTheme();
-    }
-    
-    // ----------------------------------------------------
     // Lógica Específica da Página: BATER PONTO
     // ----------------------------------------------------
     if (document.getElementById('punchButton')) {
