@@ -63,10 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const STORAGE_KEY_LAST_PUNCH = 'pontoID_last_punch';
         
         const TIPO_PONTO = {
-            OUT: { text: "Saída", next: "IN", status: "Fora do Expediente", buttonText: "ENTRADA", statusClass: "" },
-            IN: { text: "Entrada", next: "BREAK_START", status: "Em Trabalho", buttonText: "INÍCIO INTERVALO", statusClass: "status-work" },
-            BREAK_START: { text: "Início Intervalo", next: "BREAK_END", status: "Em Intervalo", buttonText: "FIM INTERVALO", statusClass: "status-break" },
-            BREAK_END: { text: "Fim Intervalo", next: "OUT", status: "Em Trabalho", buttonText: "SAÍDA", statusClass: "status-work" }
+            OUT: { text: "Entrada", next: "IN", status: "Em Trabalho", buttonText: "ENTRADA", statusClass: "status-work" },
+            IN: { text: "Início do Intervalo", next: "BREAK_START", status: "Em Intervalo", buttonText: "INÍCIO INTERVALO", statusClass: "status-break" },
+            BREAK_START: { text: "Fim do Intervalo", next: "BREAK_END", status: "Em Trabalho", buttonText: "FIM INTERVALO", statusClass: "status-work" },
+            BREAK_END: { text: "Saída", next: "OUT", status: "Fora do expediente", buttonText: "SAÍDA", statusClass: "" }
         };
 
         let statusPontoAtual = TIPO_PONTO.OUT; 
